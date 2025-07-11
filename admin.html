@@ -1,32 +1,46 @@
-<form id="submitForm" style="display:none; margin-top: 30px;">
-  <h3>➕ Add New AI Tool</h3>
-  <input type="text" id="toolName" placeholder="Tool Name" required />
-  <textarea id="toolDesc" placeholder="Tool Description" required></textarea>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel - AI ToolDeck</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>🔐 Admin Login</h2>
+    <input type="email" id="adminEmail" placeholder="Admin Email" required />
+    <input type="password" id="adminPassword" placeholder="Password" required />
+    <button id="loginBtn">Login</button>
 
-  <input type="url" id="toolLink" placeholder="Tool Website Link (e.g. https://chat.openai.com)" required />
-  <input type="url" id="toolImage" placeholder="Tool Image URL (logo/png)" required />
+    <form id="submitForm" style="display:none; margin-top: 30px;">
+      <h3>➕ Add New AI Tool</h3>
+      <input type="text" id="toolName" placeholder="Tool Name" required />
+      <textarea id="toolDesc" placeholder="Tool Description" required></textarea>
+      <input type="url" id="toolLink" placeholder="Tool Website Link (e.g. https://example.com)" required />
+      <input type="url" id="toolImage" placeholder="Tool Image URL" required />
+      <select id="toolCategory" required>
+        <option value="">Select Category</option>
+        <option value="writing">Writing</option>
+        <option value="image">Image</option>
+        <option value="video">Video</option>
+        <option value="chatbot">Chatbot</option>
+        <option value="code">Code</option>
+      </select>
+      <select id="toolTag" required>
+        <option value="">Select Tag</option>
+        <option value="Free">Free</option>
+        <option value="Paid">Paid</option>
+      </select>
+      <button type="submit">Submit Tool</button>
+    </form>
+  </div>
 
-  <select id="toolCategory" required>
-    <option value="">Select Category</option>
-    <option value="writing">Writing</option>
-    <option value="image">Image</option>
-    <option value="video">Video</option>
-    <option value="chatbot">Chatbot</option>
-    <option value="code">Code</option>
-  </select>
-
-  <select id="toolTag" required>
-    <option value="">Select Tag</option>
-    <option value="Free">Free</option>
-    <option value="Paid">Paid</option>
-  </select>
-
-  <button type="submit">Submit Tool</button>
-</form>
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-
-<!-- তোমার firebase.js -->
-<script src="firebase.js"></script>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <!-- Firebase Config and Logic -->
+  <script src="firebase.js"></script>
+</body>
+</html>
