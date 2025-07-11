@@ -2,32 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI ToolDeck - Discover AI Tools</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel - AI ToolDeck</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 </head>
-<body>
-  <header>
-    <h1>🚀 AI ToolDeck</h1>
-    <p>Explore the best AI tools by category</p>
-    <div class="controls">
-      <input type="text" id="searchInput" placeholder="🔍 Search AI Tools..." />
-      <select id="categoryFilter">
-        <option value="">All Categories</option>
+<body style="background: linear-gradient(to right, #f8f9fa, #d6e0f0);">
+  <div class="container" style="max-width: 600px; margin: 50px auto; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.1);">
+    <h2 style="text-align: center; color: #4f46e5;">🔐 Admin Login</h2>
+    <input type="email" id="adminEmail" placeholder="Admin Email" required />
+    <input type="password" id="adminPassword" placeholder="Password" required />
+    <button id="loginBtn">Login</button>
+
+    <form id="submitForm" style="display:none; margin-top: 30px;">
+      <h3 style="text-align:center; color:#4f46e5;">➕ Add New AI Tool</h3>
+      <input type="text" id="toolName" placeholder="Tool Name" required />
+      <textarea id="toolDesc" placeholder="Tool Description" required></textarea>
+      <input type="url" id="toolLink" placeholder="Tool Website Link (e.g. https://example.com)" required />
+      <input type="url" id="toolImage" placeholder="Tool Image URL" required />
+      <select id="toolCategory" required>
+        <option value="">Select Category</option>
         <option value="writing">Writing</option>
         <option value="image">Image</option>
         <option value="video">Video</option>
         <option value="chatbot">Chatbot</option>
         <option value="code">Code</option>
       </select>
-      <button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
-    </div>
-  </header>
-  <main><div id="toolContainer" class="tool-grid"></div></main>
-  <footer><p>&copy; 2025 AI ToolDeck. All rights reserved.</p></footer>
+      <select id="toolTag" required>
+        <option value="">Select Tag</option>
+        <option value="Free">Free</option>
+        <option value="Paid">Paid</option>
+      </select>
+      <button type="submit">Submit Tool</button>
+    </form>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
   <script src="firebase.js"></script>
-  <script src="script.js"></script>
 </body>
 </html>
