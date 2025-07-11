@@ -3,37 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Tools Directory</title>
+  <title>AI ToolDeck - Discover AI Tools</title>
   <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
-  <script defer src="firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 </head>
 <body>
   <header>
-    <div class="container header-content">
-      <h1>🌟 Discover the Best AI Tools in One Place</h1>
-      <div class="search-filter">
-        <input type="text" id="searchInput" placeholder="Search AI tools..." />
-        <select id="categoryFilter">
-          <option value="all">All Categories</option>
-          <option value="writing">✏️ Writing</option>
-          <option value="image">🎨 Image</option>
-          <option value="chatbot">💬 Chatbot</option>
-          <option value="video">🎬 Video</option>
-          <option value="code">💻 Code</option>
-        </select>
-      </div>
-    </div>
+    <h1>🚀 AI ToolDeck</h1>
+    <p>Explore the best free and paid AI tools by category</p>
   </header>
 
   <main>
-    <div class="container" id="toolContainer">
-      <!-- Tool cards will load here via script.js -->
-    </div>
+    <div id="toolContainer" class="tool-grid"></div>
   </main>
 
   <footer>
-    <p>© 2025 AI Tools Directory. All rights reserved.</p>
+    <p>&copy; 2025 AI ToolDeck. All rights reserved.</p>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
