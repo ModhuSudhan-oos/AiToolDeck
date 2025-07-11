@@ -1,3 +1,20 @@
+// ✅ Firebase Config (same as firebase.js এ ছিলো)
+const firebaseConfig = {
+  apiKey: "AIzaSyDdvkBUD9LQFEjrPo9Qvfq9p_wzXZxbJuo",
+  authDomain: "aitooldeck.firebaseapp.com",
+  projectId: "aitooldeck",
+  storageBucket: "aitooldeck.firebasestorage.app",
+  messagingSenderId: "1011178093109",
+  appId: "1:1011178093109:web:e4addc124941d8acc10f7c",
+  measurementId: "G-VRGP9NXDC2"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// ✅ Show tools from Firestore
+const toolContainer = document.getElementById("toolContainer");
+
 function displayTools(toolList) {
   toolContainer.innerHTML = "";
 
@@ -21,4 +38,14 @@ function displayTools(toolList) {
   });
 }
 
-const loginBtn = document.getElementById("loginBtn");
+// ✅ Fetch tools on page load
+db.collection("tools").orderBy("createdAt", "desc").get().then((snapshot) => {
+  const tools = [];
+  snapshot.forEach((doc) => {
+    tools.push(doc.data());
+  });
+  displayTools(tools);
+}).catch((error) => {
+  console.error("Error getting tools:", error);
+  toolContainer.innerHTML = "<p>Failed to load tools.</p>";
+});
