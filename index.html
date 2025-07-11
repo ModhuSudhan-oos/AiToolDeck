@@ -11,17 +11,23 @@
 <body>
   <header>
     <h1>🚀 AI ToolDeck</h1>
-    <p>Explore the best free and paid AI tools by category</p>
+    <p>Explore the best AI tools by category</p>
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="🔍 Search AI Tools..." />
+      <select id="categoryFilter">
+        <option value="">All Categories</option>
+        <option value="writing">Writing</option>
+        <option value="image">Image</option>
+        <option value="video">Video</option>
+        <option value="chatbot">Chatbot</option>
+        <option value="code">Code</option>
+      </select>
+      <button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+    </div>
   </header>
-
-  <main>
-    <div id="toolContainer" class="tool-grid"></div>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 AI ToolDeck. All rights reserved.</p>
-  </footer>
-
+  <main><div id="toolContainer" class="tool-grid"></div></main>
+  <footer><p>&copy; 2025 AI ToolDeck. All rights reserved.</p></footer>
+  <script src="firebase.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
