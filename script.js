@@ -1,30 +1,17 @@
-const firebaseConfig = {
-  apiKey: "AIzaSyDdvkBUD9LQFEjrPo9Qvfq9p_wzXZxbJuo",
-  authDomain: "aitooldeck.firebaseapp.com",
-  projectId: "aitooldeck",
-  storageBucket: "aitooldeck.firebasestorage.app",
-  messagingSenderId: "1011178093109",
-  appId: "1:1011178093109:web:e4addc124941d8acc10f7c",
-  measurementId: "G-VRGP9NXDC2"
-};
-
-firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-
 const toolContainer = document.getElementById("toolContainer");
+const searchInput = document.getElementById("searchInput");
+const categoryFilter = document.getElementById("categoryFilter");
 
-function displayTools(toolList) {
+function renderTools(tools) {
   toolContainer.innerHTML = "";
-
-  if (toolList.length === 0) {
+  if (tools.length === 0) {
     toolContainer.innerHTML = "<p>No tools found.</p>";
     return;
   }
-
-  toolList.forEach((tool) => {
+  tools.forEach(tool => {
     const card = document.createElement("div");
     card.classList.add("tool-card");
-
     card.innerHTML = `
       <img src="${tool.image}" alt="${tool.name}" />
       <h3>${tool.name}</h3>
@@ -36,13 +23,27 @@ function displayTools(toolList) {
   });
 }
 
-db.collection("tools").orderBy("createdAt", "desc").get().then((snapshot) => {
-  const tools = [];
-  snapshot.forEach((doc) => {
-    tools.push(doc.data());
+function loadTools() {
+  db.collection("tools").orderBy("createdAt", "desc").get().then(snapshot => {
+    const tools = [];
+    snapshot.forEach(doc => tools.push(doc.data()));
+    applyFilters(tools);
   });
-  displayTools(tools);
-}).catch((error) => {
-  console.error("Error getting tools:", error);
-  toolContainer.innerHTML = "<p>Failed to load tools.</p>";
-});
+}
+
+function applyFilters(tools) {
+  const keyword = searchInput.value.toLowerCase();
+  const selectedCategory = categoryFilter.value;
+  const filtered = tools.filter(tool =>
+    tool.name.toLowerCase().includes(keyword) &&
+    (selectedCategory === "" || tool.category === selectedCategory)
+  );
+  renderTools(filtered);
+}
+
+searchInput.addEventListener("input", () => loadTools());
+categoryFilter.addEventListener("change", () => loadTools());
+function toggleDarkMode() {
+  document.body.classList.toggle("dark-mode");
+}
+loadTools();
