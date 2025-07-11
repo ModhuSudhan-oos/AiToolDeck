@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Tools Directory</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+  <script defer src="firebase.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <h1>🌟 Discover the Best AI Tools in One Place</h1>
+      <div class="search-filter">
+        <input type="text" id="searchInput" placeholder="Search AI tools..." />
+        <select id="categoryFilter">
+          <option value="all">All Categories</option>
+          <option value="writing">✏️ Writing</option>
+          <option value="image">🎨 Image</option>
+          <option value="chatbot">💬 Chatbot</option>
+          <option value="video">🎬 Video</option>
+          <option value="code">💻 Code</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container" id="toolContainer">
+      <!-- Tool cards will load here via script.js -->
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 AI Tools Directory. All rights reserved.</p>
+  </footer>
+</body>
+</html>
