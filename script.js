@@ -1,4 +1,3 @@
-// ✅ Firebase Config (same as firebase.js এ ছিলো)
 const firebaseConfig = {
   apiKey: "AIzaSyDdvkBUD9LQFEjrPo9Qvfq9p_wzXZxbJuo",
   authDomain: "aitooldeck.firebaseapp.com",
@@ -12,7 +11,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// ✅ Show tools from Firestore
 const toolContainer = document.getElementById("toolContainer");
 
 function displayTools(toolList) {
@@ -28,17 +26,16 @@ function displayTools(toolList) {
     card.classList.add("tool-card");
 
     card.innerHTML = `
-      <img src="${tool.image}" alt="${tool.name}" style="width:100%; border-radius:10px; max-height:160px; object-fit:cover;" />
+      <img src="${tool.image}" alt="${tool.name}" />
       <h3>${tool.name}</h3>
       <p>${tool.description}</p>
       <div class="tool-tags">🏷️ ${tool.category.toUpperCase()} | 💰 ${tool.tag}</div>
-      <a href="${tool.link}" target="_blank" style="display:inline-block;margin-top:10px;padding:8px 12px;background:#4f46e5;color:white;border-radius:8px;text-decoration:none;">🔗 Visit Tool</a>
+      <a href="${tool.link}" target="_blank">🔗 Visit Tool</a>
     `;
     toolContainer.appendChild(card);
   });
 }
 
-// ✅ Fetch tools on page load
 db.collection("tools").orderBy("createdAt", "desc").get().then((snapshot) => {
   const tools = [];
   snapshot.forEach((doc) => {
