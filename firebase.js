@@ -25,3 +25,6 @@ submitForm?.addEventListener("submit", (e) => {
     alert("❌ Error: " + error.message);
   });
 });
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
