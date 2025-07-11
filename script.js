@@ -20,3 +20,5 @@ function displayTools(toolList) {
     toolContainer.appendChild(card);
   });
 }
+
+const loginBtn = document.getElementById("loginBtn");
