@@ -1,87 +1,70 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to right, #ece9e6, #ffffff);
+  background: #f4f4f4;
   color: #333;
+  transition: background 0.3s, color 0.3s;
 }
-
+.dark-mode { background: #121212; color: #e0e0e0; }
 header {
-  background: #6a11cb;
-  background: linear-gradient(to right, #2575fc, #6a11cb);
-  padding: 40px 20px;
-  text-align: center;
+  background: linear-gradient(to right, #4f46e5, #5b21b6);
   color: white;
+  padding: 30px 20px;
+  text-align: center;
 }
-
-header h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
+header .controls {
+  margin-top: 15px;
 }
-
-header p {
-  font-size: 1.2rem;
+header input, header select, header button {
+  padding: 8px 12px;
+  margin: 0 5px;
+  border-radius: 6px;
+  border: none;
 }
-
+header button {
+  background: #333;
+  color: white;
+  cursor: pointer;
+}
 .tool-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
   padding: 40px;
 }
-
 .tool-card {
-  background-color: #fff;
+  background: white;
   border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease;
 }
-
 .tool-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-5px);
 }
-
 .tool-card img {
   width: 100%;
   height: 180px;
   object-fit: cover;
 }
-
-.tool-card h3 {
-  font-size: 22px;
-  margin: 16px;
-}
-
-.tool-card p {
-  font-size: 15px;
-  margin: 0 16px 10px;
-  color: #555;
-}
-
+.tool-card h3 { margin: 16px; font-size: 20px; }
+.tool-card p { margin: 0 16px 12px; font-size: 14px; }
 .tool-tags {
-  margin: 0 16px 10px;
+  margin: 0 16px 16px;
   font-size: 13px;
-  color: #888;
+  color: #666;
 }
-
 .tool-card a {
   display: block;
   margin: 0 16px 16px;
-  padding: 10px 15px;
-  background: #6a11cb;
+  padding: 10px;
+  background: #4f46e5;
   color: white;
   text-align: center;
+  border-radius: 6px;
   text-decoration: none;
-  border-radius: 8px;
 }
-
-.tool-card a:hover {
-  background: #2575fc;
-}
-
 footer {
   text-align: center;
   padding: 20px;
-  background-color: #f1f1f1;
-  color: #777;
+  background: #f1f1f1;
 }
