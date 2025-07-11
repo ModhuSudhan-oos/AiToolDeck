@@ -1,64 +1,42 @@
-// Firebase Config
 const firebaseConfig = {
   apiKey: "AIzaSyDdvkBUD9LQFEjrPo9Qvfq9p_wzXZxbJuo",
   authDomain: "aitooldeck.firebaseapp.com",
   projectId: "aitooldeck",
-  storageBucket: "aitooldeck.firebasestorage.app",
+  storageBucket: "aitooldeck.appspot.com",
   messagingSenderId: "1011178093109",
   appId: "1:1011178093109:web:e4addc124941d8acc10f7c",
   measurementId: "G-VRGP9NXDC2"
 };
-
 firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
 
-// Elements
-const loginBtn = document.getElementById("loginBtn");
-const loginEmail = document.getElementById("adminEmail");
-const loginPassword = document.getElementById("adminPassword");
-const submitForm = document.getElementById("submitForm");
-
-// Admin Login
-loginBtn?.addEventListener("click", () => {
-  const email = loginEmail.value;
-  const password = loginPassword.value;
-
-  auth.signInWithEmailAndPassword(email, password)
-    .then(() => {
-      alert("✅ Logged in as Admin");
-      submitForm.style.display = "block";
-    })
-    .catch((error) => {
-      alert("❌ Login failed: " + error.message);
-    });
+firebase.auth().onAuthStateChanged(user => {
+  if (user) {
+    document.getElementById("submitForm").style.display = "block";
+  } else {
+    document.getElementById("loginBtn").onclick = () => {
+      const email = document.getElementById("adminEmail").value;
+      const password = document.getElementById("adminPassword").value;
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(() => {
+          document.getElementById("submitForm").style.display = "block";
+        })
+        .catch(err => alert("Login Failed: " + err.message));
+    };
+  }
 });
 
-// Tool Submission
-submitForm?.addEventListener("submit", (e) => {
+document.getElementById("submitForm")?.addEventListener("submit", e => {
   e.preventDefault();
-
-  const toolName = document.getElementById("toolName").value;
-  const toolDesc = document.getElementById("toolDesc").value;
-  const toolCategory = document.getElementById("toolCategory").value;
-  const toolTag = document.getElementById("toolTag").value;
-  const toolLink = document.getElementById("toolLink").value;
-  const toolImage = document.getElementById("toolImage").value;
-
-  db.collection("tools").add({
-    name: toolName,
-    description: toolDesc,
-    category: toolCategory,
-    tag: toolTag,
-    link: toolLink,
-    image: toolImage,
+  const data = {
+    name: document.getElementById("toolName").value,
+    description: document.getElementById("toolDesc").value,
+    link: document.getElementById("toolLink").value,
+    image: document.getElementById("toolImage").value,
+    category: document.getElementById("toolCategory").value,
+    tag: document.getElementById("toolTag").value,
     createdAt: firebase.firestore.FieldValue.serverTimestamp()
-  })
-  .then(() => {
-    alert("✅ Tool added successfully!");
-    submitForm.reset();
-  })
-  .catch((error) => {
-    alert("❌ Error: " + error.message);
-  });
+  };
+  firebase.firestore().collection("tools").add(data)
+    .then(() => alert("Tool Added Successfully!"))
+    .catch(err => alert("Error adding tool: " + err.message));
 });
